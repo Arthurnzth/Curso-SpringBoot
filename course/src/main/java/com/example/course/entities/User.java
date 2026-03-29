@@ -1,11 +1,16 @@
 package com.example.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +29,13 @@ public class User implements Serializable {
     private String password;
 
     // TODO: Associations
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
+    public User() {
+        
+    }
 
     public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
@@ -31,9 +43,6 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.password = password;
-    }
-    public User() {
-        
     }
 
     public Long getId() {
@@ -54,6 +63,10 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public void setId(Long id) {
