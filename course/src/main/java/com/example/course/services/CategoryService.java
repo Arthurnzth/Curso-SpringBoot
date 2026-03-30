@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.course.entities.Category;
 import com.example.course.repositories.CategoryRepository;
 
-
 @Service
 public class CategoryService {
 
